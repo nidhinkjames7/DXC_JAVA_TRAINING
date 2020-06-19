@@ -1,12 +1,11 @@
 package com.dxc.banking;
 
+import java.io.BufferedReader;
+
 public interface RBI 
 {
-	int MIN_BAL=1000;
-	float FD_AMT=500;
-	public void openAccount();
-	public void deposit();
-	public void withdrawl();
-	public void openFD();
-	public void displayAccountDetails();
+	public void openAccount(BufferedReader buff);
+	public void deposit(BufferedReader buff);
+	public void withdrawl(BufferedReader buff);
+	public void openFD(BufferedReader buff);
 }
