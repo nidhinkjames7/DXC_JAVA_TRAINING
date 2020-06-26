@@ -1,6 +1,7 @@
 package com.dxc.FeeManagement;
 
 import java.sql.Connection;
+
 import java.sql.DriverManager;
 import java.util.Scanner;
 
@@ -10,6 +11,7 @@ public class FeeApp
 {
 	public static void main(String[] args) throws Exception
 	{
+		
 		Scanner sc= new Scanner(System.in);
 		Accountant mAccountant= new Accountant();
 		Admin mAdmin = new Admin();
@@ -33,27 +35,39 @@ public class FeeApp
 			int accountantChoice;
 			if(UserTypeChoice==1)
 			{
-				do
+				System.out.println("Enter Username");
+				String username=sc.next();
+				System.out.println("Enter Password");
+				String password=sc.next();
+				if((username.equals("admin"))&&(password.equals("admin123")))
 				{
-					System.out.println("*****Admin Procces*****");
-					System.out.println();
-					System.out.println("1.Add Accountant");
-					System.out.println("2.View Accountant Details");
-					System.out.println("Enter Your Choice");
-					adminChoice=sc.nextInt();
-					switch(adminChoice)
+					do
 					{
-						case 1: mAdmin.addAccountant();
-								break;
-						case 2: mAdmin.viewAccountant();
-								break;
-						default: System.out.println("Invalid Choice");
-					}
-					System.out.println("Do you Want to Continue\nYes\nNo");
-					continueChoice = sc.next();
-					if(continueChoice.equalsIgnoreCase("No"))
-						transaction = false;
-				}while(transaction);
+						System.out.println("*****Admin Procces*****");
+						System.out.println();
+						System.out.println("1.Add Accountant");
+						System.out.println("2.View Accountant Details");
+						System.out.println("3.Update Accountant");
+						System.out.println("Enter Your Choice");
+						adminChoice=sc.nextInt();
+						switch(adminChoice)
+						{
+							case 1: mAdmin.addAccountant();
+									break;
+							case 2: mAdmin.viewAccountant();
+									break;
+							default: System.out.println("Invalid Choice");
+						}
+						System.out.println("Do you Want to Continue\nYes\nNo");
+						continueChoice = sc.next();
+						if(continueChoice.equalsIgnoreCase("No"))
+							transaction = false;
+					}while(transaction);
+				}
+				else 
+				{
+					System.out.println("Invalid Username or Password");
+				}
 			}
 			else if(UserTypeChoice==2)
 			{
@@ -63,6 +77,7 @@ public class FeeApp
 					System.out.println();
 					System.out.println("1. Add Student");
 					System.out.println("2. View Student Deatils");
+					System.out.println("3. Accounts");
 					System.out.println("Enter Your Choice");
 					accountantChoice=sc.nextInt();
 					switch(accountantChoice)
@@ -70,6 +85,8 @@ public class FeeApp
 						case 1: mAccountant.addStudent();
 								break;
 						case 2: mAccountant.viewStudent();
+								break;
+						case 3:mAccountant.account();
 								break;
 						default: System.out.println("Invalid Choice");
 					}
