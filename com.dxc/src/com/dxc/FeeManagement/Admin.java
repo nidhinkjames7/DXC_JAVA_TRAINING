@@ -57,7 +57,10 @@ public class Admin
 		{
 			System.out.println("Exception: "+e);
 		}
-		
+		finally
+		{
+			sc.close();
+		}
 		
 	}
 	public void viewAccountant()
@@ -83,6 +86,10 @@ public class Admin
 		catch(Exception e)
 		{
 			System.out.println("Exception: "+e);
+		}
+		finally
+		{
+			sc.close();
 		}
 	}
 	

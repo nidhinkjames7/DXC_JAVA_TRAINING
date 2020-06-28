@@ -9,13 +9,25 @@ import com.mysql.jdbc.Statement;
 
 public class FeeApp
 {
+	Connection mConnectionObject;
+	public Connection getInstance() throws Exception 
+	{
+		if(mConnectionObject==null) {
+		Class.forName("com.mysql.jdbc.Driver");
+		mConnectionObject=DriverManager.getConnection("jdbc:mysql://localhost:3306/casestudy?characterEncoding=latin1\",\"nidhin\",\"Myfriends@123");
+		return mConnectionObject;
+	}
+	else
+		return mConnectionObject;
+	}
 	public static void main(String[] args) throws Exception
 	{
-		
+//		databaseConnection ConnectionObj= new databaseConnection();
 		Scanner sc= new Scanner(System.in);
 		Accountant mAccountant= new Accountant();
 		Admin mAdmin = new Admin();
 		boolean feemngt=true;
+		FeeApp mFeeApp= new FeeApp();
 		
 		Class.forName("com.mysql.jdbc.Driver");
 		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/casestudy?characterEncoding=latin1","nidhin","Myfriends@123");

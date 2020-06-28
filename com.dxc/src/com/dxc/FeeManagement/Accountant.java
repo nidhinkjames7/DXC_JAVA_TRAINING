@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.util.Date;
 import java.util.Scanner;
 
+import javax.activation.MailcapCommandMap;
+
 import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.Statement;
 
@@ -15,8 +17,11 @@ public class Accountant
 	
 	String stud_id;
 	String stud_name,stud_address,stud_city,stud_state,stud_country;
-	String stud_email,stud_phone,stud_course,stud_fee,stud_paid,stud_due,stud_username,stud_password;
+	String stud_email,stud_phone,stud_course,stud_username,stud_password;
 	String date;
+	int stud_fee,stud_paid,stud_due;
+	
+	
 	
 	public void addStudent()
 	{
@@ -26,7 +31,7 @@ public class Accountant
 			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/casestudy?characterEncoding=latin1","nidhin","Myfriends@123");
 			
 			Statement stmt=(Statement) con.createStatement();
-			String insert_query= "INSERT INTO student VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
+			String insert_query= "INSERT INTO student VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement pstmt= (PreparedStatement) con.prepareStatement(insert_query);
 			
 			System.out.println("Enter Student id");
@@ -48,15 +53,15 @@ public class Accountant
 			System.out.println("Enter Course");
 			stud_course=sc.nextLine();
 			System.out.println("Enter Fees");
-			stud_fee=sc.nextLine();
+			stud_fee=sc.nextInt();
 			/*System.out.println("Enter Fee Paid");
 			stud_paid=sc.nextLine();*/
 			/*System.out.println("Enter Due Fees");
 			stud_due=sc.nextLine();*/
 			System.out.println("Enter Username");
-			stud_username=sc.nextLine();
+			stud_username=sc.next();
 			System.out.println("Enter Password");
-			stud_password=sc.nextLine();
+			stud_password=sc.next();
 			
 			pstmt.setString(1, stud_id);
 			pstmt.setString(2, stud_name);
@@ -67,11 +72,14 @@ public class Accountant
 			pstmt.setString(7, stud_email);
 			pstmt.setString(8, stud_phone);
 			pstmt.setString(9, stud_course);
-			pstmt.setString(10, stud_fee);
+			pstmt.setInt(10, stud_fee);
 			/*pstmt.setString(11, stud_paid);
 			pstmt.setString(12, stud_due);*/
-			pstmt.setString(13, stud_username);
-			pstmt.setString(14, stud_password);
+			pstmt.setString(11, stud_username);
+			pstmt.setString(12, stud_password);
+			pstmt.setInt(13, stud_due);
+			pstmt.setInt(14, stud_paid);
+			pstmt.setString(15, date);
 			
 			pstmt.executeUpdate();
 			
@@ -81,6 +89,10 @@ public class Accountant
 		catch(Exception e)
 		{
 			System.out.println("Exception: "+e);
+		}
+		finally
+		{
+			sc.close();
 		}
 	}
 	public void viewStudent()
@@ -117,6 +129,10 @@ public class Accountant
 		{
 			System.out.println("Exception: "+e);
 		}
+		finally
+		{
+			sc.close();
+		}
 	}
 	
 	public void account()
@@ -130,27 +146,53 @@ public class Accountant
 		Class.forName("com.mysql.jdbc.Driver");
 		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/casestudy?characterEncoding=latin1","nidhin","Myfriends@123");
 		Statement stmt=(Statement) con.createStatement();
+		String insert_query= "INSERT INTO student VALUES(?,?,?)";
+		PreparedStatement pstmt= (PreparedStatement) con.prepareStatement(insert_query);
 		ResultSet rs= stmt.executeQuery("SELECT * FROM student WHERE stud_id='"+stud_id+"'");
 		while(rs.next())
 		{
 			System.out.println("Student ID: "+rs.getString(1)+"\nStudent Name: "+rs.getString(2)+"\nStudent Address: "+rs.getString(3)+"\nStudent City: "+rs.getString(4)+"\nStudent State: "+rs.getString(5)+"\nStudent Country: "+rs.getString(6)+"\nStudent Email: "+rs.getString(7)+
 					"\nStudent Phone: "+rs.getString(8)+"\nStudent Course: "+rs.getString(9)
-					+"\nStudent Fee: "+rs.getString(10)/*"\nStudent Fee Paid: "+rs.getString(11)+
+					+"\nStudent Fee: "+rs.getInt(10)/*"\nStudent Fee Paid: "+rs.getString(11)+
 					"\nStudent Fee Due: "+rs.getString(12)*/+"\nStudent Username: "+rs.getString(11));		
 			System.out.println("============================================================");
 		}
+
 		System.out.println("Enter Fee Paied");
-		stud_paid=sc.next();
+		stud_paid=sc.nextInt();
 		System.out.println("Enter Date of Payment");
 		date=sc.nextLine();
+		stud_due =(stud_fee) - (stud_paid);
 		
+
+		/*pstmt.setString(1, stud_id);
+		pstmt.setString(2, stud_name);
+		pstmt.setString(3, stud_address);
+		pstmt.setString(4, stud_city);
+		pstmt.setString(5, stud_state);
+		pstmt.setString(6, stud_country);
+		pstmt.setString(7, stud_email);
+		pstmt.setString(8, stud_phone);
+		pstmt.setString(9, stud_course);
+		pstmt.setInt(10, stud_fee);
+		pstmt.setString(11, stud_paid);
+		pstmt.setString(12, stud_due);
+		pstmt.setString(13, stud_username);
+		pstmt.setString(14, stud_password);*/
+		pstmt.setInt(15, stud_due);
+		pstmt.setInt(16, stud_paid);
+		pstmt.setString(17, date);
+		
+		pstmt.executeUpdate();
+		System.out.println("Fees Updated!!!");
 		}
 		catch(Exception e)
 		{
 			System.out.println("Exception: "+e);
 		}
-		
-		
+		finally 
+		{
+			sc.close();
+		}		
 	}
-	
 }
