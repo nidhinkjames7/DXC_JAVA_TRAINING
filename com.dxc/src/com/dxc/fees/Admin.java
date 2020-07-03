@@ -1,4 +1,4 @@
-package com.dxc.FeeManagement;
+package com.dxc.fees;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,21 +11,21 @@ import com.mysql.jdbc.Statement;
 public class Admin 
 {
 	Scanner sc= new Scanner(System.in);
-	
+
 	String acc_id;
 	String acc_name,acc_address,acc_email,acc_phone,acc_username,acc_password;
-	
-	public void addAccountant(Connection con)
+
+	public void addAccountant()
 	{
 		try
 		{
-			/*Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.jdbc.Driver");
 			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/casestudy?characterEncoding=latin1","nidhin","Myfriends@123");
-			*/
+
 			Statement stmt=(Statement) con.createStatement();
 			String insert_query= "INSERT INTO accountant VALUES(?,?,?,?,?,?,?)";
 			PreparedStatement pstmt= (PreparedStatement) con.prepareStatement(insert_query);
-			
+
 			System.out.println("Enter Acountant Id");
 			acc_id=sc.nextLine();
 			System.out.println("Enter Accountant Name");
@@ -40,7 +40,7 @@ public class Admin
 			acc_username=sc.nextLine();
 			System.out.println("Enter Password");
 			acc_password=sc.nextLine();
-			
+
 			pstmt.setString(1, acc_id);
 			pstmt.setString(2, acc_name);
 			pstmt.setString(3, acc_address);
@@ -48,22 +48,19 @@ public class Admin
 			pstmt.setString(5, acc_phone);
 			pstmt.setString(6, acc_username);
 			pstmt.setString(7, acc_password);
-			
+
 			pstmt.executeUpdate();
-			
+
 			System.out.println("Successfully Inserted");
 		}
 		catch(Exception e)
 		{
 			System.out.println("Exception: "+e);
 		}
-		finally
-		{
-			sc.close();
-		}
-		
+
+
 	}
-	public void viewAccountant(Connection con)
+	public void viewAccountant()
 	{
 		/*System.out.println("Accountant Name: "+acc_name);
 		System.out.println("Accountant Address: "+acc_address);
@@ -73,9 +70,9 @@ public class Admin
 		try
 		{
 
-			/*Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.jdbc.Driver");
 			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/casestudy?characterEncoding=latin1","nidhin","Myfriends@123");
-*/			Statement stmt=(Statement) con.createStatement();
+			Statement stmt=(Statement) con.createStatement();
 			ResultSet rs= stmt.executeQuery("select * from accountant");
 			while(rs.next())
 			{
@@ -92,52 +89,4 @@ public class Admin
 			sc.close();
 		}
 	}
-	
-/*	public void editAccountant()
-	{
-		try
-		{
-		Class.forName("com.mysql.jdbc.Driver");
-		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/casestudy?characterEncoding=latin1","nidhin","Myfriends@123");
-		
-		
-		System.out.println("These Are the Users");
-		System.out.println();
-		viewAccountant();
-		
-		System.out.println("Select the User id You Want to Update");
-		acc_id=sc.next();
-		int Updatechoice;
-		System.out.println("Select The Field To Updated");
-		System.out.println("1.Name");
-		System.out.println("2.Address");
-		System.out.println("3.Email");
-		System.out.println("4.Phone");
-		System.out.println("5.Username");
-		System.out.println("6.Password");
-		Updatechoice=sc.nextInt();
-		switch(Updatechoice)
-		{
-			case 1: System.out.println("Enter Name");
-					acc_name=sc.next();
-					PreparedStatement stmtUpdate = (PreparedStatement) con.prepareStatement("UPDATE accountant SET acc_name WHERE acc_id=acc_no");
-					stmtUpdate.setString(1, acc_id);
-					stmtUpdate.setString(2, acc_name);
-					stmtUpdate.setString(3, acc_address);
-					stmtUpdate.setString(4, acc_email);
-					stmtUpdate.setString(5, acc_phone);
-					stmtUpdate.setString(6, acc_username);
-					stmtUpdate.setString(7, acc_password);
-					stmtUpdate.executeUpdate();
-					break;
-			default:System.out.println("Invalid Choice");		
-					break;		
-		}
-		}
-		catch(Exception e) 
-		{
-			System.out.println("Exception: "+e);
-		}
-	}
-*/
 }

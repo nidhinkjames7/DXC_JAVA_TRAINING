@@ -23,13 +23,13 @@ public class Accountant
 	
 	
 	
-	public void addStudent()
+	public void addStudent(Connection con )
 	{
 		try
 		{
-			Class.forName("com.mysql.jdbc.Driver");
+			/*Class.forName("com.mysql.jdbc.Driver");
 			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/casestudy?characterEncoding=latin1","nidhin","Myfriends@123");
-			
+			*/
 			Statement stmt=(Statement) con.createStatement();
 			String insert_query= "INSERT INTO student VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement pstmt= (PreparedStatement) con.prepareStatement(insert_query);
@@ -95,7 +95,7 @@ public class Accountant
 			sc.close();
 		}
 	}
-	public void viewStudent()
+	public void viewStudent(Connection con)
 	{
 		/*System.out.println("Enter Student Name: "+stud_name);		
 		System.out.println("Enter Student Address: "+stud_address);		
@@ -112,8 +112,8 @@ public class Accountant
 		*/
 		try
 		{
-		Class.forName("com.mysql.jdbc.Driver");
-		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/casestudy?characterEncoding=latin1","nidhin","Myfriends@123");
+		/*Class.forName("com.mysql.jdbc.Driver");
+		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/casestudy?characterEncoding=latin1","nidhin","Myfriends@123");*/
 		Statement stmt=(Statement) con.createStatement();
 		ResultSet rs= stmt.executeQuery("select * from student");
 		while(rs.next())
@@ -135,7 +135,7 @@ public class Accountant
 		}
 	}
 	
-	public void account()
+	public void account(Connection con)
 	{
 		System.out.println("*****Welcome to ACCOUNT section*****");
 		System.out.println("=====================================");
@@ -143,8 +143,8 @@ public class Accountant
 		stud_id=sc.next();
 		try
 		{
-		Class.forName("com.mysql.jdbc.Driver");
-		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/casestudy?characterEncoding=latin1","nidhin","Myfriends@123");
+		/*Class.forName("com.mysql.jdbc.Driver");
+		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/casestudy?characterEncoding=latin1","nidhin","Myfriends@123");*/
 		Statement stmt=(Statement) con.createStatement();
 		String insert_query= "INSERT INTO student VALUES(?,?,?)";
 		PreparedStatement pstmt= (PreparedStatement) con.prepareStatement(insert_query);
