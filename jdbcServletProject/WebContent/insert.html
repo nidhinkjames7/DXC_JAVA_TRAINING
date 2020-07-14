@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>ADD EMPLOYEE FORM</title>
+    <style>
+        input[type=text], select, input[type=email],input[type=password],input[type=tel],input[type=date],input[type=file],
+        input[type=submit], input[type=reset]
+        {
+            width: 100%;
+            padding: 5px 10px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        table.center
+        {
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body style="background-color:dimgray;">
+	 <h1 style="text-align: center;">MY FORM</h1>
+	 <form action="save" method="get">
+	     <table class="center">
+	         <tr>
+	             <td>
+	                 <label>Name</label>
+	             </td>
+	             <td>
+	                 <input type="text" name="emp_name" placeholder="Name">
+	             </td>
+	         </tr>
+	         <tr>
+	             <td>
+	                 <label>Email</label>
+	             </td>
+	             <td>
+	                 <input type="email" name="emp_email" placeholder="Email">
+	             </td>
+	         </tr>
+	         <tr>
+	             <td>
+	                 <label>Password</label>
+	             </td>
+	             <td>
+	                 <input type="password" name="emp_password" placeholder="Password">
+	             </td>
+	         </tr>
+	         <tr>
+	             <td>
+	                 <label>Country</label>
+	             </td>
+					<td>
+	                 <select id="empcountry" name="emp_country">
+	                     <option>Select One Country</option>
+	                     <option>India</option>
+	                     <option>China</option>
+	                     <option>USA</option>
+	                     <option>UK</option>
+	                 </select>
+	             </td>
+	         </tr>
+	         <tr>
+	         	<td>
+	         		<input type="reset" name="resetBtn">
+	         	</td>
+	         	<td>
+	         		<input type="submit" value="Add Employee">
+	         	</td>
+	         </tr>
+	     </table>
+	 </form>
+</body>
+</html>

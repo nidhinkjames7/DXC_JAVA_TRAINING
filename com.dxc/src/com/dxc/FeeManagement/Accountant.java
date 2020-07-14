@@ -1,5 +1,6 @@
 package com.dxc.FeeManagement;
 
+import java.io.BufferedReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -23,7 +24,7 @@ public class Accountant
 	
 	
 	
-	public void addStudent(Connection con )
+	public void addStudent(BufferedReader buff, Connection con)
 	{
 		try
 		{
@@ -95,7 +96,7 @@ public class Accountant
 			sc.close();
 		}
 	}
-	public void viewStudent(Connection con)
+	public void viewStudent(BufferedReader buff, Connection con)
 	{
 		/*System.out.println("Enter Student Name: "+stud_name);		
 		System.out.println("Enter Student Address: "+stud_address);		

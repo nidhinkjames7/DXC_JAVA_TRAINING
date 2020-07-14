@@ -78,9 +78,9 @@ public class FeeApp
 					accountantChoice=sc.nextInt();
 					switch(accountantChoice)
 					{
-						case 1: mAccountant.addStudent();
+						case 1: mAccountant.addStudent(null, con);
 								break;
-						case 2: mAccountant.viewStudent();
+						case 2: mAccountant.viewStudent(null, con);
 								break;
 						default: System.out.println("Invalid Choice");
 					}

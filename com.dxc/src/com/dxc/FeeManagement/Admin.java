@@ -1,5 +1,6 @@
 package com.dxc.FeeManagement;
 
+import java.io.BufferedReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -15,7 +16,7 @@ public class Admin
 	String acc_id;
 	String acc_name,acc_address,acc_email,acc_phone,acc_username,acc_password;
 	
-	public void addAccountant(Connection con)
+	public void addAccountant(BufferedReader buff, Connection con)
 	{
 		try
 		{
@@ -63,7 +64,7 @@ public class Admin
 		}
 		
 	}
-	public void viewAccountant(Connection con)
+	public void viewAccountant(BufferedReader buff, Connection con)
 	{
 		/*System.out.println("Accountant Name: "+acc_name);
 		System.out.println("Accountant Address: "+acc_address);

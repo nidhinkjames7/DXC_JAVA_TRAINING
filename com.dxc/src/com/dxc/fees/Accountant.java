@@ -1,5 +1,6 @@
 package com.dxc.fees;
 
+import java.io.BufferedReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -16,13 +17,13 @@ public class Accountant
 	String stud_name,stud_address,stud_city,stud_state,stud_country;
 	String stud_email,stud_phone,stud_course,stud_fee,stud_paid,stud_due,stud_username,stud_password;
 
-	public void addStudent()
+	public void addStudent(BufferedReader buff, Connection con)
 	{
 		try
 		{
-			Class.forName("com.mysql.jdbc.Driver");
+			/*Class.forName("com.mysql.jdbc.Driver");
 			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/casestudy?characterEncoding=latin1","nidhin","Myfriends@123");
-
+*/
 			Statement stmt=(Statement) con.createStatement();
 			String insert_query= "INSERT INTO student VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement pstmt= (PreparedStatement) con.prepareStatement(insert_query);
@@ -85,7 +86,7 @@ public class Accountant
 			sc.close();
 		}
 	}
-	public void viewStudent()
+	public void viewStudent(BufferedReader buff, Connection con)
 	{
 		/*System.out.println("Enter Student Name: "+stud_name);		
 		System.out.println("Enter Student Address: "+stud_address);		
@@ -102,8 +103,8 @@ public class Accountant
 		*/
 		try
 		{
-		Class.forName("com.mysql.jdbc.Driver");
-		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/casestudy?characterEncoding=latin1","nidhin","Myfriends@123");
+		/*Class.forName("com.mysql.jdbc.Driver");
+		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/casestudy?characterEncoding=latin1","nidhin","Myfriends@123");*/
 		Statement stmt=(Statement) con.createStatement();
 		ResultSet rs= stmt.executeQuery("select * from student");
 		while(rs.next())
