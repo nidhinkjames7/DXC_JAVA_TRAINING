@@ -24,37 +24,37 @@ public class MovieController
 		@Autowired
 		MovieService movieService;
 
-		// http://localhost:8562/movie/all
+		// http://localhost:8562/movies/all
 		@RequestMapping(value = "/all", method = RequestMethod.GET)
 		public List<Movie> getAllMovies() {
 			return this.movieService.getAllMovies();
 		}
 
-		// http://localhost:8562/employee/addEmployee
+		// http://localhost:8562/movies/addMovie
 		@RequestMapping(value = "/addMovie", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 		public Movie addMovie(@RequestBody Movie movie) {
 			return this.movieService.addMovie(movie);
 		}
 
-		// http://localhost:8562/employee/updateEmployee
+		// http://localhost:8562/movies/updateMovie
 		@RequestMapping(value = "/updateEmployee", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 		public Movie updateEmployee(@RequestBody Movie movie) {
 			return this.movieService.updateMovie(movie);
 		}
 
-		// http://localhost:8562/employee/1
+		// http://localhost:8562/movies/1
 		@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 		public Optional<Movie> getEmployee(@PathVariable int id) {
 			return this.movieService.getMovieById(id);
 		}
 
-		// http://localhost:8562/employee/all
+		// http://localhost:8562/movies/all
 		@RequestMapping(value = "/all", method = RequestMethod.DELETE)
 		public void deleteAllMovies() {
 			this.movieService.deleteAllMovies();
 		}
 
-		// http://localhost:8562/employee/1
+		// http://localhost:8562/movies/1
 		@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 		public void deleteMovie(@PathVariable int id) {
 			this.movieService.deleteMovieById(id);
