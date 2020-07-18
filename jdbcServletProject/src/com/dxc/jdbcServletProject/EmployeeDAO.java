@@ -44,7 +44,14 @@ public class EmployeeDAO
 	public static int editEmployee(Employee mEmp) throws Exception {
 		int status = 0;
 		Connection con = EmployeeDAO.getConnection();
+		PreparedStatement ps = con.prepareStatement("insert into employee(emp_name,emp_email,emp_password,emp_country) values(?,?,?,?)");
+		ps.setString(1, mEmp.getName());
+		ps.setString(2, mEmp.getEmail());
+		ps.setString(3, mEmp.getPassword());
+		ps.setString(4, mEmp.getCountry());
+		status = ps.executeUpdate();	
 		
+		System.out.println("Successfully Updated!!!");
 		return status;
 	}
 	
