@@ -6,7 +6,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @EnableJpaRepositories
-public class MovieAppApplication {
+public class MovieAppApplication 
+{
 
 	public static void main(String[] args) {
 		
