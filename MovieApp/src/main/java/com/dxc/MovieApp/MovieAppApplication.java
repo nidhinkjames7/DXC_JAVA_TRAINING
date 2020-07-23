@@ -12,6 +12,8 @@ public class MovieAppApplication
 	public static void main(String[] args) {
 		
 		SpringApplication.run(MovieAppApplication.class, args);
+		
+		System.out.println("Application Successfully Started...!!!");
 	}
 
 }
