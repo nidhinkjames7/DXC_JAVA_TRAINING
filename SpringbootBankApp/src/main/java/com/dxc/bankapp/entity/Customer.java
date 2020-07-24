@@ -31,5 +31,9 @@ public class Customer
 	
 	@Column (name="age", nullable = true, length=255)
 	private String age;
+
+	
+	
+	
 	
 }
